@@ -1,127 +1,141 @@
-# Object Detection Using Faster R-CNN (Pretrained Model)
+# Object Detection using Faster R-CNN
 
-## 📌 Project Overview
+## 📌 Overview
 
-This project demonstrates **object detection using a pretrained Faster R-CNN deep learning model** implemented with **PyTorch and TorchVision**. The model detects multiple objects in an image and draws bounding boxes along with class labels and confidence scores.
+This project demonstrates **object detection using a pre-trained Faster R-CNN model** with a **ResNet-50 + Feature Pyramid Network (FPN)** backbone, implemented using **PyTorch and Torchvision**.  
+The model is trained on the **COCO dataset** and performs object detection on images by drawing bounding boxes and class labels.
 
-The project focuses on **inference using transfer learning**, without training a model from scratch.
-
----
-
-## 🧠 Pretrained Model Used
-
-The model used in this project is:
-fasterrcnn_resnet50_fpn(pretrained=True)
-
-
-### Model Details
-- **Architecture:** Faster R-CNN
-- **Backbone Network:** ResNet-50
-- **Feature Pyramid Network (FPN):** Enabled
-- **Pretrained Dataset:** COCO (Common Objects in Context)
-- **Framework:** PyTorch / TorchVision
-
-This model is well-known for its strong performance in general-purpose object detection tasks.
+The implementation is designed to run in a **Google Colab environment** and performs **inference on a single image** stored in Google Drive.
 
 ---
 
-## 📂 Project Structure
-├── Object_Detection_using_Faster_R_CNN.ipynb
-├── sample_images/
-│ └── beach.jpg
-└── README.md
+## 🚀 Key Features
 
+- Uses **Faster R-CNN (ResNet50-FPN)** pre-trained on COCO
+- Performs **object detection inference**
+- Applies **confidence threshold filtering**
+- Visualizes **bounding boxes and class labels**
+- Simple and easy-to-understand workflow
 
 ---
 
-## ⚙️ Requirements
+## 🧠 Model Information
 
-Install the required dependencies using the following command:
+- **Architecture:** Faster R-CNN  
+- **Backbone:** ResNet-50 with FPN  
+- **Dataset:** COCO (Common Objects in Context)  
+- **Framework:** PyTorch + Torchvision  
 
+---
+
+## 🛠️ Technologies Used
+
+- Python
+- PyTorch
+- Torchvision
+- OpenCV
+- PIL (Pillow)
+- NumPy
+- Google Colab
+
+---
+
+## 📂 Project Workflow
+
+1. Import required libraries  
+2. Load pre-trained Faster R-CNN model  
+3. Set model to evaluation mode  
+4. Mount Google Drive  
+5. Load and preprocess input image  
+6. Perform object detection inference  
+7. Filter predictions using confidence threshold  
+8. Draw bounding boxes and labels  
+9. Display output image  
+
+---
+
+## 📸 Output Description
+
+The model detects objects such as:
+
+- Person
+- Car
+- Bicycle
+- Boat
+- Umbrella
+- And many other COCO classes
+
+Each detected object is displayed with:
+- **Green bounding box**
+- **Blue class label**
+
+---
+
+## 📁 COCO Classes
+
+The project includes a predefined list of **COCO class names**, mapping class IDs to human-readable labels such as `person`, `car`, `dog`, `boat`, etc.
+
+---
+
+## ⚙️ How to Run the Project
+
+### Option 1: Google Colab (Recommended)
+
+1. Upload the notebook to Google Colab
+2. Mount Google Drive
+3. Place the input image inside Google Drive
+4. Update the image path in the notebook
+5. Run all cells
+
+---
+
+### Option 2: Local Machine
+
+> ⚠️ This project is optimized for Google Colab. Minor changes may be required for local execution.
+
+Install required libraries:
 ```bash
-pip install torch torchvision opencv-python matplotlib numpy
-Optional (if using Google Colab):
-- Google Drive mounted for image access
+pip install torch torchvision opencv-python pillow
+```
 
-project:
-  name: Object Detection Using Faster R-CNN
-  description: >
-    An object detection project using a pretrained Faster R-CNN model
-    implemented with PyTorch and TorchVision. The project focuses on
-    inference using transfer learning without training from scratch.
+## 🧪 Confidence Threshold
+```bash
+scores > 0.2
+```
 
-how_the_project_works:
-  step_1_import_libraries:
-    description: Import required libraries for deep learning, image processing, and visualization
-    libraries:
-      - torch
-      - torchvision
-      - opencv-python (cv2)
-      - matplotlib
-      - numpy
+Only predictions with confidence scores greater than **0.2** are displayed.
+This value can be adjusted for stricter detection.
 
-  step_2_load_pretrained_model:
-    description: Load a pretrained Faster R-CNN model and set it to evaluation mode
-    model:
-      name: fasterrcnn_resnet50_fpn
-      pretrained: true
-      framework: torchvision
-    code_snippet: |
-      model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
-      model.eval()
-    training:
-      performed: false
-      note: No additional training or fine-tuning is performed
+---
 
-  step_3_image_preprocessing:
-    description: Prepare the input image for inference
-    operations:
-      - Load image using OpenCV
-      - Convert image from BGR to RGB
-      - Convert image to PyTorch tensor
-      - Normalize according to model requirements
+## ⚠️ Limitations
 
-  step_4_object_detection:
-    description: Perform inference using the pretrained model
-    input: Preprocessed image tensor
-    output:
-      - bounding_boxes
-      - class_labels
-      - confidence_scores
+- No model training (inference only)
+- Single image detection
+- Uses pre-trained COCO weights
+- Designed mainly for Google Colab
 
-  step_5_visualization:
-    description: Visualize detection results
-    operations:
-      - Draw bounding boxes on the image
-      - Display object class names
-      - Display confidence scores
-      - Show final output using Matplotlib
+---
 
-example_output:
-  detectable_objects:
-    - people
-    - vehicles
-    - common_everyday_objects
-  details:
-    - bounding_box
-    - confidence_score
-    - coco_dataset_class_labels
+## 🔮 Future Enhancements
 
-key_features:
-  - Uses a state-of-the-art pretrained object detection model
-  - No training required
-  - Simple and beginner-friendly implementation
-  - Suitable for learning deep learning and computer vision
-  - Demonstrates practical transfer learning usage
+- Video object detection
+- Batch image processing
+- Custom dataset training
+- Model fine-tuning
+- Improved visualization
+  
+---
 
-future_improvements:
-  - Fine-tune the model on a custom dataset
-  - Add real-time object detection using video input
-  - Improve visualization and save detection outputs
-  - Deploy as a web or desktop application
+## 👤 Author
 
-author:
-  purpose: Educational and learning
-  note: >
-    This project demonstrates how pretrained deep learning models
-    can be effectively used with PyTorch for object detection tasks.
+**Anas Bin Ayub**
+  
+---
+
+## 📜 License
+
+This project is intended for **educational and research purposes only.**
+Pre-trained model weights belong to their respective owners.
+  
+---
